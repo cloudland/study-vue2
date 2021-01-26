@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>子访问父</title>
+</head>
+<body>
+  <div id="app">
+    <child></child>
+  </div>
+
+  <!-- 组件 -->
+  <template id="child">
+    <div>
+      <h2>组件</h2>
+      <button @click="clickAccessParent">点我</button>
+    </div>
+  </template>
+
+  <script src="../node_modules/vue/dist/vue.js"></script>
+  <script>
+    new Vue({
+      el: '#app',
+      data: {
+        msg: '消息'
+      },
+
+      components: {
+        // 注册组件(局部组件)
+        'child': {
+          template: '#child',
+          methods: {
+            clickAccessParent() {
+              console.log('访问父组件: ', this.$parent);
+
+              // 访问父级内容
+              console.log('父组件内容: ', this.$parent.msg);
+
+              // 直接访问根(root)组件
+              console.log('直接访问根: ', this.$root);
+            }
+          }
+        }
+      }
+    });
+  </script>
+</body>
+</html>

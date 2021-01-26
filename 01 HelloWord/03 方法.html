@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>方法</title>
+</head>
+
+<body>
+    <div id="app">
+        <h1>当前计数: {{count}}</h1>
+        <button v-on:click="count++">增加</button>
+        <button @click="subtract">减少</button>
+    </div>
+
+    <script src="../node_modules/vue/dist/vue.js"></script>
+    <script>
+        new Vue({
+            // 管理 DOM 节点
+            el: '#app',
+            // 数据
+            data: {
+                count: 0
+            },
+            // 方法
+            methods: {
+                // 定义方法
+                subtract: function() {
+                    console.debug('执行减法');
+                    this.count--;
+                }
+            }
+        });
+    </script>
+</body>
+</html>

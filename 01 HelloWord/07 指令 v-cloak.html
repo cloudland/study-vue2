@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>v-cloak</title>
+    <style>
+        [v-cloak] {
+            display: none;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="app">
+        <!-- 在 Vue 解析后, 删除 v-cloak 样式。 在没有渲染完成前, 隐藏内容 -->
+        <h1 v-cloak>{{content}}</h1>
+    </div>
+
+    <script src="../node_modules/vue/dist/vue.js"></script>
+    <script>
+        setTimeout(() => {
+            new Vue({
+                // 管理 DOM 节点
+                el: '#app',
+                data: {
+                    content: '看见我咯'
+                }
+            });
+        }, 2000);
+
+    </script>
+</body>
+
+</html>

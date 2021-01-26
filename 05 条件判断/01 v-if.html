@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>v-if</title>
+</head>
+
+<body>
+  <div id="app">
+    <!-- 直接设置 true -->
+    <h1 v-if="true">{{msg}}</h1>
+    <!-- 使用 isShow 变量 -->
+    <h1 v-if="isShow">{{msg}}</h1>
+    <h1 v-else>我是else</h1>
+
+    <!-- else-if 判断 -->
+    <h2 v-if="score >= 90">优秀</h2>
+    <h2 v-else-if="score >= 80">良好</h2>
+    <h2 v-else>差</h2>
+
+  </div>
+
+  <script src="../node_modules/vue/dist/vue.js"></script>
+  <script>
+    new Vue({
+      // 管理 DOM 节点
+      el: '#app',
+      // 数据
+      data: {
+        msg: '你好',
+        isShow: true,
+        score: 80
+      }
+    });
+  </script>
+</body>
+
+</html>

@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>循环Key属性</title>
+</head>
+
+<body>
+  <div id="app">
+    <ul>
+      <!-- 可以提高复用效率, key 绑定不要使用 _index, _index 无法对应插入元素 -->
+      <li v-for="_item in table" :key="_item">{{_item}}</li>
+    </ul>
+
+    <button @click="add">添加内容</button>
+  </div>
+
+  <script src="../node_modules/vue/dist/vue.js"></script>
+  <script>
+    new Vue({
+      el: '#app',
+      data: {
+        table: ['灌篮高手', '火影忍者', '海贼王']
+      },
+
+      methods: {
+        
+        add() {
+          console.log('添加内容');
+          this.table.push('名侦探柯南');
+        }
+
+      }
+    });
+
+  </script>
+</body>
+
+</html>

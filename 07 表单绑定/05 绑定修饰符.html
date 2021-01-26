@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>lazy/number</title>
+</head>
+
+<body>
+
+  <div id="app">
+    <!-- 修饰符: lazy, 失去焦点或回车更新模型 -->
+    <input type="text" v-model.lazy="msg">
+    <h2>{{msg}}</h2>
+
+    <!-- 修饰符: number, 赋值默认都会转换成 string, 使用.number转换为数字 -->
+    <input type="number" v-model.number="age">
+    <h2>转换数值: {{age}}/{{typeof age}}</h2>
+
+    <!-- 修饰符: trim -->
+    <input type="text" v-model.trim="title">
+    <h2>去除空格标题: {{title}}</h2>
+    
+  </div>
+
+  <script src="../node_modules/vue/dist/vue.js"></script>
+  <script>
+    new Vue({
+      el: '#app',
+      data: {
+        msg: '你好',
+        age: 0,
+        title: ''
+      }
+    });
+  </script>
+</body>
+
+</html>

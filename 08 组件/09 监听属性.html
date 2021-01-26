@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>监听属性</title>
+</head>
+
+<body>
+  <div id="app">
+    <c-content :title="content" @title-click="listerItem"></c-content>
+  </div>
+
+  <!-- 模板 -->
+  <template id="content">
+    <div>
+      <h1>{{head}}</h1>
+      <input type="text" v-model="head">
+    </div>
+  </template>
+
+  <script src="../node_modules/vue/dist/vue.js"></script>
+  <script>
+    new Vue({
+      el: '#app',
+      data: {
+        content: '这是标题'
+      },
+
+      methods: {
+        listerItem(_item) {
+          console.log('监听点击事件', _item);
+        }
+      },
+
+      // 组件
+      components: {
+        // 注册组件(局部组件)
+        'c-content': {
+          template: '#content',
+          // 传参
+          props: {
+            title: String
+          },
+          // 组件数据
+          data() {
+            return {
+              head: this.title
+            };
+          },
+          // 监听, 属性 head 发生变化时调用
+          watch: {
+            head(_new, _old) {
+              console.log('监听title属性变化: ', _new, _old);
+              // 自定事件, 向上传递事件
+              this.$emit('title-click', _new);
+            }
+          }
+        }
+      }
+    });
+  </script>
+</body>
+
+</html>

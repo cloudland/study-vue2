@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>v-pre</title>
+</head>
+
+<body>
+    <div id="app">
+        <h1>{{content}}</h1>
+        <!--直接显示内容, 不做任何处理-->
+        <h1 v-pre>{{content}}</h1>
+    </div>
+
+    <script src="../node_modules/vue/dist/vue.js"></script>
+    <script>
+        new Vue({
+            // 管理 DOM 节点
+            el: '#app',
+            data: {
+                content: '变量内容'
+            }
+        });
+    </script>
+</body>
+</html>

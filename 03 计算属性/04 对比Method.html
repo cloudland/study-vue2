@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>对比Method</title>
+</head>
+
+<body>
+  <div id="app">
+    <!-- 计算属性, 存在缓存. 调用多次执行1次 -->
+    <h1>{{fullName}}</h1>
+    <h1>{{fullName}}</h1>
+    <!-- 函数, 调用多次执行多次 -->
+    <h1>{{getFullName()}}</h1>
+    <h1>{{getFullName()}}</h1>
+  </div>
+
+  <script src="../node_modules/vue/dist/vue.js"></script>
+  <script>
+    new Vue({
+      // 管理 DOM 节点
+      el: '#app',
+      data: {
+        first: '西门',
+        last: '春雪'
+      },
+      // 计算属性
+      computed: {
+        fullName: function () {
+          console.log("计算属性被调用了");
+          return this.first + this.last;
+        }
+      },
+      // 函数
+      methods: {
+        getFullName: function () {
+          console.log("函数被调用了");
+          return this.first + this.last;
+        }
+      }
+    });
+  </script>
+</body>
+
+</html>

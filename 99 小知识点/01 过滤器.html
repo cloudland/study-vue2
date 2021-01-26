@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>过滤器</title>
+</head>
+<body>
+  <div id="app">
+    <ul>
+      <li v-for="_book in bookArray">{{_book.price | showPrice}}</li>
+    </ul>
+  </div>
+
+  <script src="../node_modules/vue/dist/vue.js"></script>
+  <script>
+    new Vue({
+      el: '#app',
+      data: {
+        bookArray: [
+          {
+            title: '小学生安全出行',
+            price: 89.00
+          }
+        ]
+      },
+      // 过滤器, 过滤器使用直接通过 '|' 管道使用
+      filters: {
+
+        showPrice(_price) {
+          // toFixed(2) 保留两位小数
+          return '¥' + _price.toFixed(2);
+        }
+
+      }
+    });
+
+  </script>
+</body>
+</html>

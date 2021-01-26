@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>slot引用组件数据</title>
+</head>
+<body>
+  <div id="app">
+    <!-- 使用默认结构 -->
+    <slot-01></slot-01>
+
+    <!-- 定义结构 -->
+    <slot-01>
+      <!-- v2.5 之前使用插槽数据, 必须使用 template 作为根, 新版本不需要. slot 是变量名, 可以自行定义。作为插槽内数据引用对象 -->
+      <template slot-scope="slot">
+        <span v-for="_item in slot.data">{{_item}} - </span>
+      </template>
+    </slot-01>
+
+    <slot-01>
+      <!-- v2.5 之前使用插槽数据, 必须使用 template 作为根, 新版本不需要. slot 是变量名, 可以自行定义。作为插槽内数据引用对象 -->
+      <template slot-scope="slot">
+        <span>{{slot.data.join(' - ')}}</span>
+      </template>
+    </slot-01>
+  </div>
+
+  <!-- 组件模板 -->
+  <template id="slot_01">
+    <div>
+      <h2>使用插槽变量</h2>
+      <!-- 定义插槽变量, :data 可以随便名称, cartoonArray 绑定的变量名 -->
+      <slot :data="cartoonArray">
+        <ul>
+          <li v-for="_cartoon in cartoonArray">{{_cartoon}}</li>
+        </ul>
+      </slot>
+    </div>
+  </template>
+
+  <script src="../node_modules/vue/dist/vue.js"></script>
+  <script>
+    new Vue({
+      el: '#app',
+      components: {
+        // 注册组件(局部组件)
+        // 默认插槽
+        'slot-01': {
+          template: '#slot_01',
+          data () {
+            return {
+              cartoonArray: ['灌篮高手', '火影忍者', '变形金刚']
+            }
+          }
+        }
+      }
+    });
+  </script>
+</body>
+</html>

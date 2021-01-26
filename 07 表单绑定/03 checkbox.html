@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CheckBox</title>
+</head>
+
+<body>
+
+  <div id="app">
+    <!-- 单项 -->
+    <label for="agree">
+      <input type="checkbox" id="agree" v-model="isAgree">同意协议
+    </label>
+    <h2>你选择的是: {{isAgree}}</h2>
+
+    <!-- 多选 -->
+    <input type="checkbox" value="灌篮高手" v-model="hobbies">灌篮高手
+    <input type="checkbox" value="火影忍者" v-model="hobbies">火影忍者
+    <input type="checkbox" value="名侦探柯南" v-model="hobbies">名侦探柯南
+    <input type="checkbox" value="变形金刚" v-model="hobbies">变形金刚
+    <h2>喜欢的漫画: {{hobbies}}</h2>
+
+  </div>
+
+
+  <script src="../node_modules/vue/dist/vue.js"></script>
+  <script>
+    new Vue({
+      el: '#app',
+      data: {
+        isAgree: false,
+        hobbies: []
+      },
+      methods: {
+        valueChange(_event) {
+          this.msg = _event.target.value;
+        }
+      }
+    });
+  </script>
+</body>
+
+</html>

@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>集合</title>
+</head>
+
+<body>
+    <div id="app">
+        <ul>
+            <li v-for="item in table">{{item}}</li>
+        </ul>
+
+        <ul>
+            <li v-for="(_item, _index) in table">{{_index}}. {{_item}}</li>
+        </ul>
+    </div>
+
+    <script src="../node_modules/vue/dist/vue.js"></script>
+    <script>
+        new Vue({
+            el: '#app',
+            data: {
+                table: ['灌篮高手', '火影忍者', '海贼王']
+            }
+        });
+
+    </script>
+</body>
+</html>

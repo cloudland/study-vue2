@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>slot插槽</title>
+</head>
+
+<body>
+  <div id="app">
+    <!-- 基本使用 -->
+    <slot-01></slot-01>
+    <slot-01>
+      <!-- 插入内容 -->
+      <button>插入按钮</button>
+    </slot-01>
+
+    <!-- 具名插槽 -->
+    <solt-02>
+      <span>替换默认</span>
+      <span slot="left">替换左边</span>
+      <span slot="midd">替换中间</span>
+      <span slot="right">替换右边</span>
+    </solt-02>
+  </div>
+
+  <!-- 组件模板 -->
+  <template id="slot_01">
+    <div>
+      <h2>默认插槽</h2>
+      <!-- 定义插槽, 插槽内可以默认指定内容, 如果使用时插入内容, 默认插槽内容会被覆盖 -->
+      <slot></slot>
+    </div>
+  </template>
+
+  <!-- 具名插槽 -->
+  <template id="slot_02">
+    <div>
+      <h2>具名插槽</h2>
+      <slot name="left"></slot>
+      <slot name="midd"></slot>
+      <slot name="right"></slot>
+      <!-- 不指定 slot 名称, 默认替换没有名称的插槽 -->
+      <slot></slot>
+    </div>
+  </template>
+
+  <script src="../node_modules/vue/dist/vue.js"></script>
+  <script>
+    new Vue({
+      el: '#app',
+      components: {
+        // 注册组件(局部组件)
+        // 默认插槽
+        'slot-01': {
+          template: '#slot_01'
+        },
+        // 具名插槽
+        'slot-02': {
+          template: '#slot_02'
+        }
+      }
+    });
+  </script>
+</body>
+
+</html>

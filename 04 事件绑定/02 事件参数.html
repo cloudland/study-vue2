@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>事件参数</title>
+</head>
+
+<body>
+  <div id="app">
+    <button @click="clickA">事件对象</button>
+
+    <!-- 获取 event 事件对象 -->
+    <button @click="clickB(count, $event)">参数,事件</button>
+
+    <h1>当前计数: {{count}}</h1>
+    <button @click="clickC(count)">参数</button>
+  </div>
+
+  <script src="../node_modules/vue/dist/vue.js"></script>
+  <script>
+    new Vue({
+      // 管理 DOM 节点
+      el: '#app',
+      // 数据
+      data: {
+        count: 0
+      },
+      // 方法
+      methods: {
+        // 定义方法
+        clickA(_event) {
+          console.log('clickA: ', _event);
+        },
+
+        clickB(_count, _event) {
+          console.log('clickB: ', _count, _event);
+        },
+
+        clickC(_count) {
+          console.log('clickC', _count);
+        }
+      }
+    });
+  </script>
+</body>
+
+</html>

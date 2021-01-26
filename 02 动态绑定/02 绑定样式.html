@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>绑定样式</title>
+    <style>
+        .active {
+            color: red;
+        }
+
+        .active_A {
+            color: blue;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="app">
+        <!-- 直接替换 class 内容 -->
+        <h2 :class="active">{{msg}}</h2>
+
+        <!-- 对象语法: active 为 true, active 会添加到 class 里面. active_A 为 true, active_A 会添加到 class 里面 -->
+        <h2 :class="{active: true, active_A: false}">{{msg}}</h2>
+        <h2 :class="getStyle()">{{msg}}</h2>
+
+        <!-- 数组语法 -->
+        <h2 :class="['active', 'active_A']">{{msg}}</h2>
+
+        <!-- 样式 -->
+        <h1 :style="{fontSize: fontSize + 'px'}">{{msg}}</h1>
+    </div>
+
+    <script src="../node_modules/vue/dist/vue.js"></script>
+    <script>
+        new Vue({
+            // 管理 DOM 节点
+            el: '#app',
+            data: {
+                msg: '内容',
+                active: 'active',
+                fontSize: 60
+            },
+            // 定义方法
+            methods: {
+                getStyle: function () {
+                    return { active: true, active_A: true };
+                }
+            }
+        });
+    </script>
+</body>
+
+</html>

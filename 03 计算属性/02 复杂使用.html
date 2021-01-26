@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>复杂属性</title>
+</head>
+
+<body>
+    <div id="app">
+        <h1>总价: {{price}}</h1>
+    </div>
+
+    <script src="../node_modules/vue/dist/vue.js"></script>
+    <script>
+        new Vue({
+            // 管理 DOM 节点
+            el: '#app',
+            data: {
+                bookArray: [
+                    { id: 01, name: 'Java 编程', price: 10 },
+                    { id: 02, name: 'Linux 编程', price: 9 }
+                ]
+            },
+            // 计算属性
+            computed: {
+                price: function () {
+                    let price = 0;
+                    this.bookArray.forEach(_book => {
+                        price += _book.price;
+                    });
+
+                    return price;
+                }
+            }
+        });
+    </script>
+</body>
+
+</html>

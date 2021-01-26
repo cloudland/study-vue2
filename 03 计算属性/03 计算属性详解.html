@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>计算属性详解(Setter\Getter)</title>
+</head>
+
+<body>
+    <div id="app">
+        <h1>{{fullName}}</h1>
+    </div>
+
+    <script src="../node_modules/vue/dist/vue.js"></script>
+    <script>
+        new Vue({
+            // 管理 DOM 节点
+            el: '#app',
+            data: {
+                first: '西门',
+                last: '春雪'
+            },
+            // 计算属性
+            computed: {
+                // 计算属性一般不做 set 方法, 只使用 get 只读属性, 可以简写参考《01 基本使用》
+                fullName: {
+                    set: function(_fullName) {
+                        console.log('调用计算属性设置');
+                        let nameArray = _fullName.split(' ');
+                        this.first = nameArray[0];
+                        this.last= nameArray[1];
+                    },
+                    get: function() {
+                        return this.first + this.last;
+                    }
+                }
+            }
+        });
+    </script>
+</body>
+</html>

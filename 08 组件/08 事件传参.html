@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>事件传参($emit)</title>
+</head>
+
+<body>
+  <div id="app">
+    <c-content @item-click="listerItem"></c-content>
+  </div>
+
+   <!-- 模板 -->
+   <template id="content">
+    <div>
+      <ul>
+        <li v-for="(_item, _index) in itemArray">
+          <h1>{{_item.title}}</h1>
+          <button @click="clickItem(_item)">点击</button>
+        </li>
+      </ul>
+      
+    </div>
+  </template>
+
+  <script src="../node_modules/vue/dist/vue.js"></script>
+  <script>
+    new Vue({
+      el: '#app',
+      data: {
+        msg: '外部参数'
+      },
+
+      methods: {
+        listerItem(_item) {
+          console.log('监听点击事件', _item);
+        } 
+      },
+
+      // 组件
+      components: {
+        // 注册组件(局部组件)
+        'c-content': {
+          template: '#content',
+          // 组件数据
+          data() {
+            return {
+              itemArray: [
+                {
+                  id: 01,
+                  title: '商品01'
+                },
+                {
+                  id: 02,
+                  title: '商品02'
+                }
+              ]
+            };
+          },
+          // 函数
+          methods: {
+            clickItem(_item) {
+              console.log('点击项目:', _item.title);
+              // 自定事件, 向上传递事件
+              this.$emit('item-click', _item);
+            }
+          }
+        }
+      }
+    });
+  </script>
+</body>
+
+</html>

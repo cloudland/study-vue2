@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>全局组件、局部组件</title>
+</head>
+
+<body>
+  <div id="app1">
+    <ctitle></ctitle>
+  </div>
+
+  <div id="app2">
+    <ctitle></ctitle>
+  </div>
+
+  <script src="../node_modules/vue/dist/vue.js"></script>
+  <script>
+    //1. 创建组件构造器
+    const cTitle = Vue.extend({
+      template: `
+        <div>
+          <h1>这是标题</h1>
+        </div>`
+    });
+
+    //2.　注册组件(全局组件, 可以在多个Vue的实例下使用)
+    // Vue.component('ctitle', cTitle);
+
+    //3. 使用组件, 参考 ctitle
+
+    new Vue({
+      el: '#app1',
+      components: {
+        // 注册组件(局部组件)
+        ctitle: cTitle
+      }
+    });
+
+    new Vue({
+      el: '#app2'
+    });
+  </script>
+</body>
+
+</html>

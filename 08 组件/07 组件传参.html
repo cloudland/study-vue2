@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>组件传参(props)</title>
+</head>
+
+<body>
+  <div id="app">
+    <!-- 参数如果定义是驼峰 iHead 参数名需做转换 i-head -->
+    <c-head :name="name"></c-head>
+    <!-- 如果没有参数, 可以启用默认值 -->
+    <c-head></c-head>
+  </div>
+
+  <!-- 模板 -->
+  <template id="head">
+    <div>
+      {{name}}
+    </div>
+  </template>
+
+  <script src="../node_modules/vue/dist/vue.js"></script>
+  <script>
+    new Vue({
+      el: '#app',
+      data: {
+        name: '外部参数'
+      },
+      // 组件
+      components: {
+        // 注册组件(局部组件)
+        'c-head': {
+          template: '#head',
+          // 组件参数(数组形式)
+          // props: ['name'],
+
+          // 对象形式, 可以类型限制(String, Array)
+          props: {
+            // 指定限制类型
+            // name: String
+
+            // 指定限制类型和默认参数
+            name: {
+              type: String,
+              default: '默认值',
+              required: true // 必传
+            }
+          },
+          // 组件数据
+          data () {
+            return {
+            };
+          }
+        }
+      }
+    });
+  </script>
+</body>
+
+</html>

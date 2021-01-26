@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>动态绑定属性</title>
+</head>
+
+<body>
+    <div id="app">
+        <!-- 绑定标签属性 -->
+        <img v-bind:src="imageUrl" alt="图片描述">
+        <!-- 语法糖 v-bind => : -->
+        <a :href="url">百度一下</a>
+    </div>
+
+    <script src="../node_modules/vue/dist/vue.js"></script>
+    <script>
+        new Vue({
+            // 管理 DOM 节点
+            el: '#app',
+            data: {
+                imageUrl: 'http://',
+                url: 'http://baidu.com'
+            }
+        });
+    </script>
+</body>
+
+</html>

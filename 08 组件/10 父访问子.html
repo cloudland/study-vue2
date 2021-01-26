@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>父访问子</title>
+</head>
+
+<body>
+  <div id="app">
+    <button @click="clickAccessChild">获取组件内容</button>
+    <child></child>
+
+    <!-- 指定组件引用名称, 配合 $refs 使用 -->
+    <child ref="p01"></child>
+  </div>
+
+  <!-- 组件 -->
+  <template id="child">
+    <div>
+      <h2>组件</h2>
+      <button @click="showMsg">点我</button>
+    </div>
+  </template>
+
+  <script src="../node_modules/vue/dist/vue.js"></script>
+  <script>
+    new Vue({
+      el: '#app',
+      methods: {
+        clickAccessChild() {
+          // 可以通过 $children 获取子组件实例集合
+          console.log('组件内容:', this.$children);
+
+          // 可以直接调用子组件函数, 按索引获取。推荐使用 $refs
+          this.$children[0].showMsg();
+
+          // 需要在组件使用处, 通过指定 ref=”“ 名称, 在这里通过名称获取. 不指定此参数为空.
+          console.log("$refs 引用: ", this.$refs.p01);
+        }
+      },
+
+      components: {
+        // 注册组件(局部组件)
+        'child': {
+          template: '#child',
+          methods: {
+            showMsg() {
+              console.log('组件内按钮被点击');
+            }
+          }
+        }
+      }
+    });
+  </script>
+</body>
+
+</html>

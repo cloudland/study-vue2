@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <div id="app">
+    <c-title></c-title>
+  </div>
+
+  <!-- 标签模板 -->
+  <template id="temp">
+    <div>
+      <h1>template 模板</h1>
+    </div>
+  </template>
+
+  <script src="../node_modules/vue/dist/vue.js"></script>
+
+  <!-- script 定义模板, 通过 id 引用 -->
+  <!-- <script type="text/x-template" id="temp">
+    <div>
+      <h1>Script 模板</h1>
+    </div>
+  </script> -->
+  
+  <script>
+    // 模板注册(全局)
+    // Vue.component('c-title', {
+    //   template: '#temp'
+    // });
+
+    new Vue({
+      el: '#app',
+      components: {
+        'c-title': {
+          template: '#temp'
+        }
+      }
+    });
+  </script>
+</body>
+
+</html>

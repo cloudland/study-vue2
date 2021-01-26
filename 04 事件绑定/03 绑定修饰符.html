@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>绑定修饰符</title>
+</head>
+
+<body>
+  <div id="app">
+    <div @click="clickDiv">
+      <button @click="clickButton">冒泡事件</button>
+      <!-- stop: 阻止 button 事件冒泡 -->
+      <button @click.stop="clickButton">冒泡事件</button>
+    </div>
+
+    <!-- prevent: 阻止默认事件, 如例子取消默认 form 的提交, 只执行函数 -->
+    <form action="#">
+      <input type="submit" value="提交" @click.prevent="clickSubmit">
+    </form>
+
+    <!-- 监听键盘 enter 回车 -->
+    <input type="text" @keyup.enter="keyUpInput"/>
+
+    <!-- once: 只触发一次 -->
+    <button @click.once="clickOnce">只触发一次</button>
+  </div>
+
+  <script src="../node_modules/vue/dist/vue.js"></script>
+  <script>
+    new Vue({
+      // 管理 DOM 节点
+      el: '#app',
+      // 数据
+      data: {
+        count: 0
+      },
+      // 方法
+      methods: {
+        // 定义方法
+        clickDiv() {
+          console.log('clickDiv');
+        },
+
+        clickButton() {
+          console.log('clickButton');
+        },
+
+        clickSubmit() {
+          console.log('clickSubmit');
+        },
+
+        keyUpInput() {
+          console.log('keyUpInput');
+        },
+
+        clickOnce() {
+          console.log('clickOnce');
+        }
+      }
+    });
+  </script>
+</body>
+
+</html>

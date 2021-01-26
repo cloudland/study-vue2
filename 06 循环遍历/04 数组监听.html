@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>数组监听</title>
+</head>
+
+<body>
+
+  <div id="app">
+    <ul>
+      <li v-for="_letter in letterArray">{{_letter}}</li>
+    </ul>
+
+    <button @click="add">添加</button>
+  </div>
+
+
+  <script src="../node_modules/vue/dist/vue.js"></script>
+  <script>
+    new Vue({
+      el: '#app',
+      data: {
+        letterArray: ['a', 'b', 'c']
+      },
+      methods: {
+        add() {
+          // 不支持响应式, 就是数据修改, 页面内容不会发生变化
+          // this.letterArray[0] = 'f';
+          // set(要修改的对象, 索引值, 修改后的值), vue 提供修改值方法
+          // Vue.set(this.letterArray, 0, 'f');
+          // this.letterArray.splice(0, 1, 'f');
+
+          // 支持响应式
+          // this.letterArray.push('d');
+          // 弹出最后一个元素
+          // this.letterArray.pop();
+          // 弹出数据第一个元素
+          // this.letterArray.shift();
+          // 在数组最前面添加元素
+          // this.letterArray.unshift('a');
+
+          // 删除/插入/替换元素, strat(开始位置)
+          // 删除: 第二个元素表示删除几个(不指定删除全部)
+          // 替换: 需要在第二个参数后, 添加替换的元素
+          // 插入: 需要在第二个参数传入0(一个不删), 添加插入元素
+          // 最后理解, 先删除后添加。
+          // this.letterArray.splice(1);
+
+          // 排序 
+          // this.letterArray.sort();
+          // 顺序翻转 
+          // this.letterArray.reverse();
+        }
+      }
+    });
+
+  </script>
+</body>
+
+</html>

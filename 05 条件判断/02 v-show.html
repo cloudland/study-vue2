@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>v-show</title>
+</head>
+
+<body>
+  <div id="app">
+    <!-- v-if: 不会存在 dom, 直接销毁 -->
+    <h1 v-if="true">{{msg}}</h1>
+    <!-- v-show: 存在 dom, 隐藏不销毁 -->
+    <h1 v-show="isShow">{{msg}}</h1>
+  </div>
+
+  <script src="../node_modules/vue/dist/vue.js"></script>
+  <script>
+    new Vue({
+      // 管理 DOM 节点
+      el: '#app',
+      // 数据
+      data: {
+        msg: '你好',
+        isShow: true
+      }
+    });
+  </script>
+</body>
+
+</html>

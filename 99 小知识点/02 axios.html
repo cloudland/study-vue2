@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>axios 网络请求</title>
+</head>
+<body>
+  
+
+<script src="../node_modules/axios/dist/axios.min.js"></script>
+<script>
+axios({
+  url: 'http://httpbin.org/get',
+  method: 'GET',
+  // GET 请求参数
+  params: {
+
+  }
+}).then((_response) => {
+  console.log(_response);
+});
+</script>
+</body>
+</html>
