@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>过渡</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.0/animate.min.css" rel="stylesheet" type="text/css" />
+    <!-- <style href="../node_modules/animate.css/animate.min.css" rel="stylesheet" type="text/css"></style> -->
+</head>
+
+<body>
+    <div id="app">
+        <h3>Animate.css</h3>
+
+        <button @click="clickToggle">切换</button>
+
+        <transition name="fade">
+            <p v-if="show">hello</p>
+        </transition>
+
+        <!-- 自定义动画样式 -->
+        <!-- animate 使用方式 -->
+        <transition enter-active-class="animate__animated animate__tada"
+            leave-active-class="animate__animated animate__bounceOutRight">
+            <p v-if="show">hello</p>
+        </transition>
+
+    </div>
+
+    <style>
+        p {
+            width: 200px;
+            height: 200px;
+            background-color: blue;
+            color: white;
+        }
+
+        .fade-enter-active,
+        .fade-leave-active {
+            transition: opacity .5s ease;
+        }
+
+        .fade-enter-from,
+        .fade-leave-to {
+            opacity: 0;
+        }
+    </style>
+
+    <script src="../node_modules/vue/dist/vue.js"></script>
+    <script>
+        new Vue({
+            el: '#app',
+            data: {
+                show: true
+            },
+            methods: {
+                clickToggle() {
+                    console.log('切换可见');
+                    this.show = !this.show;
+                }
+            }
+        });
+    </script>
+</body>
+
+</html>
