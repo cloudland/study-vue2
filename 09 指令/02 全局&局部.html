@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>全局&局部指令</title>
+</head>
+
+<body>
+    <div id="app">
+        <!-- 使用组件 -->
+        <div v-color="'pink'">使用指令</div>
+    </div>
+
+    <script src="../node_modules/vue/dist/vue.js"></script>
+    <script>
+        //1. 创建组件构造器
+
+        //2.　注册指令(全局), 周期(bind, inserted, Update, componentUpdated, unbind)
+        // Vue.directive('color', {
+        //     // 插入钩子
+        //     inserted(_elem, _param) {
+        //         // 指令生命周期
+        //         console.log('插入指令: ', _elem, _param);
+
+        //         _elem.style.background = _param.value;
+        //     },
+
+        //     // 更新钩子
+        //     update(_elem, _param) {
+        //         console.log('更新绑定状态值指令: ', _elem, _param);
+        //     }
+        // });
+
+        //3. 使用组件, 参考 c-title
+        new Vue({
+            el: '#app',
+
+            // 局部指令
+            directives: {
+                color: {
+                    inserted(_elem, _param) {
+                        console.log('插入指令: ', _elem, _param);
+
+                        _elem.style.background = _param.value;
+                    }
+                }
+            }
+        });
+    </script>
+</body>
+
+</html>
